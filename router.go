@@ -1,7 +1,7 @@
 package main
 
 import (
-	"server/example"
+	"s3-server/example"
 
 	"github.com/labstack/echo/v4"
 )
