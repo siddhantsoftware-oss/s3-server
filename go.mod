@@ -1,4 +1,4 @@
-module s3-server
+module tecna
 
 go 1.21.0
 
