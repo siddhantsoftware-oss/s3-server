@@ -11,7 +11,7 @@ func main() {
 	viper.ReadInConfig()
 	router := echo.New()
 	router.Use(middleware.CORSWithConfig(middleware.CORSConfig{
-		AllowOrigins:     []string{"http://localhost:5173"},
+		AllowOrigins:     []string{viper.GetString("CLIENT_URL")},
 		AllowMethods:     []string{"POST", "GET", "DELETE"},
 		AllowCredentials: true,
 	}))

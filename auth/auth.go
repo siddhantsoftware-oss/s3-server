@@ -16,7 +16,7 @@ func setupGoogleConfig() {
 		ClientSecret: viper.GetString("GOOGLE_CLIENT_SECRET"),
 		Scopes:       []string{"https://www.googleapis.com/auth/userinfo.email"},
 		Endpoint:     google.Endpoint,
-		RedirectURL:  "http://localhost:3000/auth/google/callback",
+		RedirectURL:  viper.GetString("API_URL") + "/auth/google/callback",
 	}
 }
 
@@ -54,10 +54,10 @@ func googleCallback(c echo.Context) error {
 		accessTokenCookie.Path = "/"
 		accessTokenCookie.Domain = "localhost"
 		c.SetCookie(accessTokenCookie)
-		return c.Redirect(http.StatusPermanentRedirect, "http://localhost:5173/")
+		return c.Redirect(http.StatusPermanentRedirect, viper.GetString("CLIENT_URL"))
 
 	}
-	return c.Redirect(http.StatusPermanentRedirect, "http://localhost:5173/?err=NotFound")
+	return c.Redirect(http.StatusPermanentRedirect, viper.GetString("CLIENT_URL")+"?err=NotFound")
 
 }
 
@@ -69,7 +69,7 @@ func signOutUser(c echo.Context) error {
 	nullCookie.Path = "/"
 	nullCookie.Domain = "localhost"
 	c.SetCookie(nullCookie)
-	return c.Redirect(http.StatusPermanentRedirect, "http://localhost:5173")
+	return c.Redirect(http.StatusPermanentRedirect, viper.GetString("CLIENT_URL"))
 }
 
 func AuthRouter(e *echo.Echo) {
