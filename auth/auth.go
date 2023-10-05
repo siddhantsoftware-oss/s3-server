@@ -2,18 +2,18 @@ package auth
 
 import (
 	"net/http"
-	"os"
 	"time"
 
 	"github.com/labstack/echo/v4"
+	"github.com/spf13/viper"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
 )
 
 func setupGoogleConfig() {
 	googleConfig = &oauth2.Config{
-		ClientID:     os.Getenv("GOOGLE_CLIENT_ID"),
-		ClientSecret: os.Getenv("GOOGLE_CLIENT_SECRET"),
+		ClientID:     viper.GetString("GOOGLE_CLIENT_ID"),
+		ClientSecret: viper.GetString("GOOGLE_CLIENT_SECRET"),
 		Scopes:       []string{"https://www.googleapis.com/auth/userinfo.email"},
 		Endpoint:     google.Endpoint,
 		RedirectURL:  "http://localhost:3000/auth/google/callback",

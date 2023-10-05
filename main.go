@@ -3,10 +3,12 @@ package main
 import (
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
+	"github.com/spf13/viper"
 )
 
 func main() {
-	InitEnv()
+	viper.SetConfigFile(".env")
+	viper.ReadInConfig()
 	router := echo.New()
 	router.Use(middleware.CORSWithConfig(middleware.CORSConfig{
 		AllowOrigins:     []string{"http://localhost:5173"},
