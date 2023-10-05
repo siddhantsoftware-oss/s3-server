@@ -20,5 +20,5 @@ func main() {
 		Output: router.Logger.Output(),
 	}))
 	Routes(router)
-	router.Logger.Fatal(router.Start(":3000"))
+	router.Logger.Fatal(router.Start(":8080"))
 }
