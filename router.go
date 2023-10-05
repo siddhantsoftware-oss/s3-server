@@ -1,8 +1,8 @@
 package main
 
 import (
-	"tecna/auth"
-	"tecna/example"
+	"s3-server/auth"
+	"s3-server/example"
 
 	"github.com/labstack/echo/v4"
 )
