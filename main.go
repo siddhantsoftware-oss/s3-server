@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	viper.SetConfigFile(".env")
+	viper.SetConfigFile(".env.prod")
 	viper.ReadInConfig()
 	router := echo.New()
 	router.Use(middleware.CORSWithConfig(middleware.CORSConfig{

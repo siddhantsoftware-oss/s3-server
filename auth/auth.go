@@ -52,7 +52,7 @@ func googleCallback(c echo.Context) error {
 		accessTokenCookie.Value = token.AccessToken
 		accessTokenCookie.Expires = time.Now().Add(time.Hour * 24)
 		accessTokenCookie.Path = "/"
-		accessTokenCookie.Domain = "localhost"
+		accessTokenCookie.Domain = viper.GetString("COOKIE_DOMAIN")
 		c.SetCookie(accessTokenCookie)
 		return c.Redirect(http.StatusPermanentRedirect, viper.GetString("CLIENT_URL"))
 
@@ -67,7 +67,7 @@ func signOutUser(c echo.Context) error {
 	nullCookie.Value = ""
 	nullCookie.Expires = time.Now()
 	nullCookie.Path = "/"
-	nullCookie.Domain = "localhost"
+	nullCookie.Domain = viper.GetString("COOKIE_DOMAIN")
 	c.SetCookie(nullCookie)
 	return c.Redirect(http.StatusPermanentRedirect, viper.GetString("CLIENT_URL"))
 }
